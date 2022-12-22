@@ -1,11 +1,11 @@
-<script setup></script>
-
 <template>
-  <h1
-    class="ml-4 flex h-24 border-2 border-gray-300 p-3 text-gray-700 shadow-md"
-  >
-    Hello world!
-  </h1>
+  <ul>
+    <li><router-link :to="{ name: 'home' }">Home</router-link></li>
+    <li><router-link :to="{ name: 'about' }">About</router-link></li>
+  </ul>
+  <router-view />
 </template>
+
+<script></script>
 
 <style scoped></style>

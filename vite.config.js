@@ -1,13 +1,31 @@
 import path from 'path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import alias from '@rollup/plugin-alias'
+import { resolve } from 'path'
+
+const projectRootDir = resolve(__dirname)
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue()],
-  resolve: {
-    alias: {
-      '~/': `${path.resolve(__dirname, 'src')}/`,
-    },
+  plugins: [
+    vue(),
+    alias({
+      entries: [
+        {
+          find: '@',
+          replacement: resolve(projectRootDir, 'src'),
+        },
+      ],
+    }),
+  ],
+  server: {
+    host: '0.0.0.0',
+    port: 10086,
+    open: false,
+    cors: true,
+  },
+  build: {
+    outDir: 'dist',
   },
 })
